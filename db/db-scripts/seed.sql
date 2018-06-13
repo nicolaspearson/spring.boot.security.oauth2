@@ -1,9 +1,9 @@
 BEGIN;
 
 INSERT INTO "auth"."sys_user" (id, username, password, created_by) VALUES
-(1, 'system', '$2y$12$w1RqSPfogfOOF9f/x/OEQ.0OjmgShbq7E0Ca0JVfG6NYicaho7pNm', 'system'),
-(2, 'admin', '$2y$12$V/cy0S9GGTNfYNTVBX9p6OcMKi8nhJlFl85WpoOCivOYHM5gTA.bW', 'system'),
-(3, 'user', '$2y$12$cJKQA8hOCsOtBfD4aJp1x.vesQKEzqrphDhZkgXaZUYs2x2mUeRby', 'system');
+(1, 'system', '$2a$04$I9Q2sDc4QGGg5WNTLmsz0.fvGv3OjoZyj81PrSFyGOqMphqfS2qKu', 'system'),
+(2, 'admin', '$2a$04$I9Q2sDc4QGGg5WNTLmsz0.fvGv3OjoZyj81PrSFyGOqMphqfS2qKu', 'system'),
+(3, 'user', '$2a$04$I9Q2sDc4QGGg5WNTLmsz0.fvGv3OjoZyj81PrSFyGOqMphqfS2qKu', 'system');
 
 INSERT INTO "auth"."sys_authority" (id, "name", "value", created_by) VALUES
 (1, 'View the demo', 'query-demo', 'system');
