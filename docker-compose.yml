@@ -1,0 +1,15 @@
+version: '3.6'
+services:
+  db:
+    hostname: postgres-auth-server
+    image: postgres:9.6
+    container_name: postgres-auth-server
+    ports:
+      - 5433:5432
+    volumes:
+      - ./db/db-scripts:/docker-entrypoint-initdb.d
+      - ./db/db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=microservices
+      - POSTGRES_USER=master
+      - POSTGRES_PASSWORD=masterkey
