@@ -17,8 +17,6 @@ spring:
     username: master
     password: masterkey
     driver-class-name: org.postgresql.Driver
-  redis:
-    host: localhost
 
 server:
   port: 9999
