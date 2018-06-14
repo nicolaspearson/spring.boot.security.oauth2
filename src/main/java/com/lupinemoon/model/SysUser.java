@@ -16,11 +16,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table (name = "sys_user", schema = "auth")
+@Table(name = "sys_user", schema = "auth")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class SysUser extends AbstractAuditingEntity {
 
     @Id
@@ -49,6 +49,7 @@ public class SysUser extends AbstractAuditingEntity {
     public Set<GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         for (SysRole role : this.roles) {
+            grantedAuthorities.add(new SimpleGrantedAuthority(role.getValue()));
             for (SysAuthority authority : role.getAuthorities()) {
                 grantedAuthorities.add(new SimpleGrantedAuthority(authority.getValue()));
             }

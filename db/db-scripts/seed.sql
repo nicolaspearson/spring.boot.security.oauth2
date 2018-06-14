@@ -6,17 +6,19 @@ INSERT INTO "auth"."sys_user" (id, username, password, created_by) VALUES
 (3, 'user', '$2a$04$I9Q2sDc4QGGg5WNTLmsz0.fvGv3OjoZyj81PrSFyGOqMphqfS2qKu', 'system');
 
 INSERT INTO "auth"."sys_authority" (id, "name", "value", created_by) VALUES
-(1, 'View the demo', 'query-demo', 'system');
+(1, 'Create, read, update or delete user info', 'CRUD_USERS', 'system'),
+(2, 'Read user info', 'READ_USERS', 'system');
 
 INSERT INTO "auth"."sys_role" (id, "name", "value", created_by) VALUES
 (1, 'administrator', 'ROLE_ADMIN', 'system'),
 (2, 'general user', 'ROLE_USER', 'system');
 
 INSERT INTO "auth"."sys_role_authorities" (sys_role_id, authorities_id) VALUES
-(1, 1);
+(1, 1),
+(2, 2);
 
 INSERT INTO "auth"."sys_user_roles" (sys_user_id, roles_id) VALUES
-(1, 1),
+(2, 1),
 (3, 2);
 
 COMMIT;

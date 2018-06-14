@@ -7,6 +7,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
 
+import javax.servlet.http.HttpServletResponse;
+
 @Configuration
 @EnableResourceServer
 @SuppressWarnings("unused")
@@ -21,11 +23,21 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.anonymous()
+        http.csrf()
                 .disable()
+                .exceptionHandling()
+                .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+                .and()
                 .authorizeRequests()
-                .antMatchers("/users/**").access("hasRole('ADMIN')")
-                .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+                .anyRequest()
+                .authenticated()
+                .and()
+                .httpBasic();
+//        http.anonymous()
+//                .disable()
+//                .authorizeRequests()
+//                .antMatchers("/users/**").access("hasRole('CRUD_USERS')")
+//                .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }
 
 }

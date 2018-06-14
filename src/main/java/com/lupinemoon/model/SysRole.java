@@ -11,9 +11,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table (name = "sys_role", schema = "auth")
+@Table(name = "sys_role", schema = "auth")
 @Data
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class SysRole extends AbstractAuditingEntity {
     private static final long serialVersionUID = 1L;
     @Id

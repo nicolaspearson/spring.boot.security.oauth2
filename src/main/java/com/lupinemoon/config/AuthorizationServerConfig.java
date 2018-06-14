@@ -23,9 +23,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private AuthenticationManager authenticationManager;
 
     @Override
-    public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
-        configurer
-                .inMemory()
+    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        clients.inMemory()
                 .withClient(CLIENT_ID)
                 .secret(CLIENT_SECRET)
                 .authorizedGrantTypes(GRANT_TYPE_PASSWORD, AUTHORIZATION_CODE, REFRESH_TOKEN, IMPLICIT)
@@ -36,8 +35,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-        endpoints
-                .tokenStore(tokenStore)
+        endpoints.tokenStore(tokenStore)
                 .authenticationManager(authenticationManager);
     }
 }

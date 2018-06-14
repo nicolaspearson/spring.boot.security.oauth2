@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "sys_authority", schema = "auth")
 @Data
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class SysAuthority extends AbstractAuditingEntity {
     @Id
     @GeneratedValue

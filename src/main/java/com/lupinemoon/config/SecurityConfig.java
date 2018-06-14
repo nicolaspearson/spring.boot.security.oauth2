@@ -29,29 +29,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource(name = "userService")
     private UserDetailsService userDetailsService;
 
-    @Override
-    @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
-
-    @Autowired
-    public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-                .passwordEncoder(encoder());
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf()
-                .disable()
-                .anonymous()
-                .disable()
-                .authorizeRequests()
-                .antMatchers("/api-docs/**")
-                .permitAll();
-    }
-
     @Bean
     public TokenStore tokenStore() {
         return new InMemoryTokenStore();
@@ -75,5 +52,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         FilterRegistrationBean bean = new FilterRegistrationBean(corsFilter);
         bean.setOrder(0);
         return bean;
+    }
+
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+    @Autowired
+    public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(encoder());
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf()
+                .disable()
+                .anonymous()
+                .disable()
+                .authorizeRequests()
+                .antMatchers("/api-docs/**")
+                .permitAll();
     }
 }

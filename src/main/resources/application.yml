@@ -1,0 +1,35 @@
+spring:
+  profiles:
+    active: default
+  application:
+      name: auth-server
+  jpa:
+    database: POSTGRESQL
+    properties:
+      hibernate:
+        default_schema: auth
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5433/microservices?currentSchema=auth
+    username: master
+    password: masterkey
+    driver-class-name: org.postgresql.Driver
+  redis:
+    host: localhost
+
+server:
+  port: 9999
+
+security:
+  oauth2:
+    resource:
+      filter-order: 3
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework: INFO
+    org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl: ERROR

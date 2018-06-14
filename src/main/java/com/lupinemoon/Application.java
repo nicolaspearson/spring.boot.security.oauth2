@@ -12,12 +12,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @SuppressWarnings("unused")
 public class Application {
 
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+
     @Bean(name = "auditorAware")
     public AuditorAware<String> auditorAware() {
         return SecurityUtils::getCurrentUserUsername;
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
     }
 }
